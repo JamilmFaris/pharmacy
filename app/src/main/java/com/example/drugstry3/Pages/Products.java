@@ -81,15 +81,10 @@ public class Products extends Fragment {
                                         response.getJSONObject(i).getString("month"),
                                         response.getJSONObject(i).getString("day"))
                                 );
-                                Toast.makeText(getContext(),
-                                        response.getJSONObject(0).getString("prodID"),
-                                        Toast.LENGTH_LONG).show();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
-
-                        products.add(new Product("fd"));
                         productAdapter.addItems(products);
 
                     }
