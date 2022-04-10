@@ -6,11 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.adapter.FragmentViewHolder;
 
 import com.example.drugstry3.Pages.Companies;
 import com.example.drugstry3.Pages.Products;
 import com.example.drugstry3.Pages.Repositories;
 import com.example.drugstry3.Pages.Types;
+
+import java.util.List;
 
 public class FragmentAdapter extends FragmentStateAdapter {
 
@@ -26,6 +29,7 @@ public class FragmentAdapter extends FragmentStateAdapter {
         }
         else if(position == 1){
             return new Companies();
+
         }
         else if(position == 2){
             return new Types();
@@ -40,5 +44,4 @@ public class FragmentAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return NUM_PAGES;
     }
-
 }

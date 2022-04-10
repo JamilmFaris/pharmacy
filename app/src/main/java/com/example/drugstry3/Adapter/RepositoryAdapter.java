@@ -19,7 +19,7 @@ import java.util.List;
 public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryViewHolder> {
 
     ArrayList<Repository> repositories = new ArrayList<>();
-    ClickListener clickListener;
+    public ClickListener clickListener;
     public RepositoryAdapter(ClickListener clickListener){
         this.clickListener = clickListener;
     }
@@ -35,11 +35,13 @@ public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryViewHolder
     @Override
     public void onBindViewHolder(@NonNull RepositoryViewHolder holder, int position) {
         holder.bind(  repositories.get(position));
-        final int index = holder.getAbsoluteAdapterPosition();
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int index = holder.getAbsoluteAdapterPosition();
                 clickListener.click(index);
+                notifyDataSetChanged();
             }
         });
     }

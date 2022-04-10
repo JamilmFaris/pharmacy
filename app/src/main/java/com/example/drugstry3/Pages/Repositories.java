@@ -1,7 +1,5 @@
 package com.example.drugstry3.Pages;
-
-import android.content.Context;
-import android.media.AudioMetadataReadMap;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.textclassifier.TextClassification;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,18 +25,9 @@ import com.example.drugstry3.Model.Repository;
 import com.example.drugstry3.R;
 import com.example.drugstry3.doingStuff;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.tabs.TabLayoutMediator;
-
 import org.json.JSONArray;
 import org.json.JSONException;
-
-import java.lang.reflect.Method;
-import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-
-import retrofit2.http.GET;
-
 public class Repositories extends Fragment
         implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -47,6 +35,7 @@ public class Repositories extends Fragment
     RecyclerView recyclerView;
     RepositoryAdapter adapter;
     ClickListener listener;
+    RequestQueue queue;
     public ArrayList<Repository> repositories = new ArrayList<>();
     public Repositories() {
         // Required empty public constructor
@@ -61,16 +50,19 @@ public class Repositories extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //init
+        queue = Volley.newRequestQueue(this.getContext());
         listener = new ClickListener() {
             @Override
             public void click(int index) {
                 Toast.makeText(getContext()
-                        , "repository " + repositories.get(index) + " chosen",
+                        , "repository " + repositories.get(index).SName + " chosen",
                        Toast.LENGTH_SHORT ).show();
                 doingStuff.repositorySelected = index;
                 doingStuff.tabLayoutMediator.detach();
                 doingStuff.tabLayoutMediator.attach();
+                doingStuff.repositorySelectedTimes++;
                 doingStuff.viewPager2.setCurrentItem(doingStuff.viewPager2.getCurrentItem() +1);
+
             }
         };
         adapter = new RepositoryAdapter(listener);
@@ -80,7 +72,7 @@ public class Repositories extends Fragment
         View view =  inflater.inflate(R.layout.fragment_repositories, container, false);
 
         //get the repositories
-        RequestQueue queue = Volley.newRequestQueue(this.getContext());
+
         String url = "http://durgs.robotic-mind.com/WebService.asmx/Store?level=select&sid=&str=All";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
                 url, null,
@@ -136,7 +128,4 @@ public class Repositories extends Fragment
         return false;
     }
 
-    public ArrayList<Repository> getRepositories() {
-        return repositories;
-    }
 }

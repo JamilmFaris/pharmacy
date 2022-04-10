@@ -5,22 +5,15 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.app.Fragment;
-import android.media.AudioMetadataReadMap;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
+import android.util.DisplayMetrics;
 import com.example.drugstry3.Adapter.FragmentAdapter;
-import com.example.drugstry3.ClickListener.ClickListener;
-import com.example.drugstry3.Pages.Repositories;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-
-import java.util.List;
+import java.util.Locale;
 
 public class doingStuff extends FragmentActivity
 
@@ -29,10 +22,16 @@ public class doingStuff extends FragmentActivity
     public static ViewPager2 viewPager2;
     FragmentStateAdapter fragmentAdapter;
     public static int repositorySelected = -1;
+    public static int productSelected = -1;
+    public static int typeSelected = -1;
+    public static int companySelected = -1;
+    public static int repositorySelectedTimes = 0;
+    public static int companySelectedTimes = 0;
     public static TabLayoutMediator tabLayoutMediator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setAppLocale("ar");
         setContentView(R.layout.activity_doing_stuff);
 
         ///init
@@ -41,7 +40,21 @@ public class doingStuff extends FragmentActivity
 
         ///
 
+
         viewPager2.setAdapter(fragmentAdapter);
+
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                    if(repositorySelectedTimes > 1 ){
+                        fragmentAdapter.notifyItemChanged(1);
+                    }
+                    if( companySelectedTimes > 1){
+                        fragmentAdapter.notifyItemChanged(3);
+                    }
+            }
+        });
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayoutMediator = new TabLayoutMediator(
                 tabLayout
@@ -57,29 +70,33 @@ public class doingStuff extends FragmentActivity
                     tab.setText("Repositories");
                 }
                 else if(position == 1){
-                    if(repositorySelected != -1)
+                    if(companySelected != -1 )
                         tab.view.setClickable(true);
                     else
                         tab.view.setClickable(false);
                     tab.setText("Companies");
                 }
                 else if(position == 2){
+
                     tab.setText("Types");
-                    tab.view.setClickable(false);
+                    if(typeSelected != -1)
+                        tab.view.setClickable(true);
+                    else
+                        tab.view.setClickable(false);
                 }
                 else {
                     tab.setText("Kinds");
-                    tab.view.setClickable(false);
+                    if(typeSelected != -1)
+                        tab.view.setClickable(true);
+                    else
+                        tab.view.setClickable(false);
                 }
-
-
             }
 
         }
         );
         tabLayoutMediator.attach();
-
-        //viewPager2.setUserInputEnabled(false);
+        viewPager2.setUserInputEnabled(false);
 
     }
 
@@ -98,4 +115,6 @@ public class doingStuff extends FragmentActivity
             viewPager2.setCurrentItem(viewPager2.getCurrentItem()-1);
         }
     }
+
+
 }

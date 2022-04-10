@@ -1,7 +1,10 @@
 package com.example.drugstry3.Pages;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,9 +21,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.drugstry3.Adapter.CompanyAdapter;
+import com.example.drugstry3.ClickListener.ClickListener;
 import com.example.drugstry3.Model.Company;
 import com.example.drugstry3.Model.Repository;
 import com.example.drugstry3.R;
+import com.example.drugstry3.doingStuff;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,10 +37,11 @@ public class Companies extends Fragment {
     ArrayList<Company>companies = new ArrayList<>();
 
     RecyclerView companiesRecyclerView;
-    CompanyAdapter companyAdapter = new CompanyAdapter();
+    public static CompanyAdapter companyAdapter;
     public Companies() {
         // Required empty public constructor
     }
+
 
 
     @Override
@@ -43,11 +49,31 @@ public class Companies extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_companies, container, false);
+
+        //init
+        ClickListener listener = new ClickListener() {
+            @Override
+            public void click(int index) {
+                Toast.makeText(getContext()
+                        , "company " + companies.get(index).CoName + " chosen",
+                        Toast.LENGTH_SHORT ).show();
+                doingStuff.companySelected = index;
+                doingStuff.tabLayoutMediator.detach();
+                doingStuff.tabLayoutMediator.attach();
+                doingStuff.companySelectedTimes++;
+                doingStuff.viewPager2.setCurrentItem(doingStuff.viewPager2.getCurrentItem() +1);
+
+            }
+        };
+        companyAdapter = new CompanyAdapter(listener);
+
 
         companiesRecyclerView = view.findViewById(R.id.companies_list);
         companiesRecyclerView.setHasFixedSize(true);
@@ -57,7 +83,9 @@ public class Companies extends Fragment {
 
         //get data
         RequestQueue queue =  Volley.newRequestQueue(Companies.this.getContext());
-        String url = "http://durgs.robotic-mind.com/WebService.asmx/Companies?level=SelectbyStore&CoId=&sid=1";
+        String url = "http://durgs.robotic-mind.com/WebService.asmx/Companies?level=SelectbyStore&CoId=&sid=";
+        int repositorySelected = doingStuff.repositorySelected + 1;
+        url += repositorySelected;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
                 url,
@@ -96,5 +124,6 @@ public class Companies extends Fragment {
                 });
         queue.add(jsonArrayRequest);
         return view;
+
     }
 }

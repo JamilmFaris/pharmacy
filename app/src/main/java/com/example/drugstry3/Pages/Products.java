@@ -19,8 +19,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.drugstry3.Adapter.ProductAdapter;
+import com.example.drugstry3.ClickListener.ClickListener;
 import com.example.drugstry3.Model.Product;
 import com.example.drugstry3.R;
+import com.example.drugstry3.doingStuff;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +33,7 @@ import java.util.ArrayList;
 public class Products extends Fragment {
     ArrayList<Product> products = new ArrayList<>();
     RecyclerView productsRecyclerView ;
-    ProductAdapter productAdapter = new ProductAdapter();
+    ProductAdapter productAdapter;
     public Products() {
         // Required empty public constructor
     }
@@ -43,11 +45,26 @@ public class Products extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //init
+        ClickListener listener = new ClickListener() {
+            @Override
+            public void click(int index) {
+                Toast.makeText(getContext()
+                        , "product " + products.get(index).prodName + " chosen",
+                        Toast.LENGTH_SHORT ).show();
+                doingStuff.productSelected = index;
+            }
+        };
+        productAdapter = new ProductAdapter(listener);
+
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_products, container, false);
         productsRecyclerView = view.findViewById(R.id.product_list);
 
-        String url = "http://durgs.robotic-mind.com/WebService.asmx/Products?level=SelectbyComp&prodid=&coid=1&type=&str=All";
+        String url = "http://durgs.robotic-mind.com/WebService.asmx/Products?level=SelectbyComp&prodid=&coid=";
+        int companyId = doingStuff.companySelected +1;
+        url += companyId;
+        url += "&type=&str=All";
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
