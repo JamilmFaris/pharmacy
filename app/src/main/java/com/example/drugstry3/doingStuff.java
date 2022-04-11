@@ -5,12 +5,14 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import com.example.drugstry3.Adapter.FragmentAdapter;
+import com.example.drugstry3.LanguageChange.LocaleHelper;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.Locale;
@@ -28,13 +30,16 @@ public class doingStuff extends FragmentActivity
     public static int repositorySelectedTimes = 0;
     public static int companySelectedTimes = 0;
     public static TabLayoutMediator tabLayoutMediator;
+    Context context;
+    Resources resources;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setAppLocale("ar");
         setContentView(R.layout.activity_doing_stuff);
 
         ///init
+        context = LocaleHelper.setLocale(doingStuff.this, "ar");
+        resources = context.getResources();
         viewPager2 = findViewById(R.id.view_pager);
         fragmentAdapter = new FragmentAdapter(this);
 
@@ -67,25 +72,25 @@ public class doingStuff extends FragmentActivity
                         tab.view.setClickable(true);
                     else
                         tab.view.setClickable(false);
-                    tab.setText("Repositories");
+                    tab.setText(resources.getString(R.string.repositories));
                 }
                 else if(position == 1){
                     if(companySelected != -1 )
                         tab.view.setClickable(true);
                     else
                         tab.view.setClickable(false);
-                    tab.setText("Companies");
+                    tab.setText(resources.getString(R.string.companies));
                 }
                 else if(position == 2){
 
-                    tab.setText("Types");
+                    tab.setText(resources.getString(R.string.types));
                     if(typeSelected != -1)
                         tab.view.setClickable(true);
                     else
                         tab.view.setClickable(false);
                 }
                 else {
-                    tab.setText("Kinds");
+                    tab.setText(resources.getString(R.string.kinds));
                     if(typeSelected != -1)
                         tab.view.setClickable(true);
                     else

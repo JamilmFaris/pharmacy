@@ -36,7 +36,7 @@
                 android:layout_marginEnd="30dp"
 
                 android:background="@drawable/edittext_shape"
-                android:hint="name"
+                android:hint="@string/name"
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
                 android:layout_marginEnd="30dp"
 
                 android:background="@drawable/edittext_shape"
-                android:hint="phone number"
+                android:hint="@string/phone_number"
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
 
@@ -73,7 +73,7 @@
                 android:layout_marginEnd="30dp"
 
 
-                android:hint="telephone_number"
+                android:hint="@string/telephone_number"
                 android:textColorHint="#000000"
 
                 android:background="@drawable/edittext_shape"
@@ -90,7 +90,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
-                android:hint="password"
+                android:hint="@string/password"
                 android:textColorHint="@color/black"
                 android:background="@drawable/edittext_shape"
                 android:inputType="textPassword"
@@ -109,7 +109,7 @@
 
                 android:layout_marginTop="5dp"
                 android:background="@drawable/button_shape"
-                android:text="next"
+                android:text="@string/next"
                 android:textColor="@color/black"
 
                 />
@@ -131,7 +131,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
 
-                android:hint="Pharmacy name"
+                android:hint="@string/pharmacy_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
 
@@ -166,7 +166,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
 
-                android:hint="address"
+                android:hint="@string/address"
                 android:background="@drawable/edittext_shape"
                 />
 
@@ -183,7 +183,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
 
-                android:hint="additional address"
+                android:hint="@string/additional_address"
                 android:background="@drawable/edittext_shape"
                 />
 
@@ -199,7 +199,7 @@
                 android:layout_marginTop="20dp"
 
                 android:background="@drawable/button_shape"
-                android:text="register"
+                android:text="@string/register"
                 android:textColor="@color/black"
                 />
 
@@ -216,7 +216,7 @@
                 android:layout_marginStart="10dp"
 
                 android:background="@drawable/button_shape"
-                android:text="back"
+                android:text="@string/back"
                 android:textColor="@color/black"
                 />
 

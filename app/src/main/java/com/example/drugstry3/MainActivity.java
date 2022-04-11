@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.drugstry3.LanguageChange.LocaleHelper;
 
@@ -21,21 +22,26 @@ public class MainActivity extends AppCompatActivity {
 
     Button loginButton;
     Button registerButton;
+    Context context;
+    Resources resources;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         setContentView(R.layout.activity_main);
 
         loginButton = findViewById(R.id.go_login);
         registerButton = findViewById(R.id.go_register);
         //remove
-
+        context = LocaleHelper.setLocale(MainActivity.this, "ar");
+        resources = context.getResources();
+        loginButton.setText(resources.getString(R.string.login));
+        registerButton.setText(resources.getString(R.string.register));
 
         Intent intent = new Intent(this, doingStuff.class);
 
-        //startActivity(intent);
+
+        startActivity(intent);
         //remove
 
         Intent goRegister = new Intent(MainActivity.this, RegisterAcitivity.class);
@@ -52,15 +58,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(goRegister);
             }
         });
-    }
-
-    private void setAppLocale(String localeCode){
-        String languageToLoad  = localeCode; // your language
-        Locale locale = new Locale(languageToLoad);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
     }
 }

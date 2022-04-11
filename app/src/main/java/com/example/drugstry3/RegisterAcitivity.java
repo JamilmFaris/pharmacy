@@ -1,6 +1,9 @@
 package com.example.drugstry3;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -20,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.drugstry3.LanguageChange.LocaleHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,11 +65,17 @@ public class RegisterAcitivity extends AppCompatActivity {
 
     List<String> cities;
 
+    Context context;
+    Resources resources;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_acitivity);
+
+        context = LocaleHelper.setLocale(RegisterAcitivity.this, "ar");
+        resources = context.getResources();
+
         queue = Volley.newRequestQueue(this);
         viewSwitcher = findViewById(R.id.viewSwitcher);
         Animation inAnimation = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
@@ -85,6 +95,19 @@ public class RegisterAcitivity extends AppCompatActivity {
         selectedCity = "اللاذقية";
         registerButton = findViewById(R.id.register_button);
         backButton = findViewById(R.id.back_button);
+
+        //naming
+        name.setText(resources.getString(R.string.name));
+        phoneNumber.setText(resources.getString(R.string.phone_number));
+        telephoneNumber.setText(resources.getString(R.string.telephone_number));
+        password.setText(resources.getString(R.string.password));
+        nextButton.setText(resources.getString(R.string.next));
+        pharmacyName.setText(resources.getString(R.string.pharmacy_name));
+        address.setText(resources.getString(R.string.address));
+        additionalAddress.setText(resources.getString(R.string.additional_address));
+        registerButton.setText(resources.getString(R.string.register));
+        backButton.setText(resources.getString(R.string.back));
+
 
         ///
         viewSwitcher.setInAnimation(inAnimation);

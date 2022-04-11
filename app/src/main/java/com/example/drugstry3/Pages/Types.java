@@ -1,5 +1,7 @@
 package com.example.drugstry3.Pages;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.drugstry3.Adapter.TypeAdapter;
 import com.example.drugstry3.ClickListener.ClickListener;
+import com.example.drugstry3.LanguageChange.LocaleHelper;
+import com.example.drugstry3.MainActivity;
 import com.example.drugstry3.R;
 import com.example.drugstry3.doingStuff;
 
@@ -22,6 +26,8 @@ public class Types extends Fragment {
     RecyclerView typesRecyclerView;
     TypeAdapter typeAdapter ;
     ArrayList<String> types = new ArrayList<>();
+    Context context;
+    Resources resources;
 
     public Types() {
         // Required empty public constructor
@@ -36,6 +42,8 @@ public class Types extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //init
+        context = LocaleHelper.setLocale(getContext(), "ar");
+        resources = context.getResources();
         ClickListener listener = new ClickListener() {
             @Override
             public void click(int index) {
@@ -53,7 +61,7 @@ public class Types extends Fragment {
 
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_types, container, false);
-        types.add("normal");types.add("offer");
+        types.add(resources.getString(R.string.normal));types.add(resources.getString(R.string.offer));
         typesRecyclerView = view.findViewById(R.id.types_list);
         typeAdapter.addItems(types);
         typesRecyclerView.setHasFixedSize(true);

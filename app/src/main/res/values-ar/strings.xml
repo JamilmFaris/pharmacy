@@ -2,4 +2,22 @@
 <resources>
     <string name="app_name">أدوية</string>
     <string name="pharma">فارما</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="register">التسجيل</string>
+    <string name="enter_your_phone_number">"أدخل رقمك "</string>
+    <string name="name">الاسم</string>
+    <string name="phone_number">رقم الجوال</string>
+    <string name="telephone_number">رقم الهاتف</string>
+    <string name="password">كلمة السر</string>
+    <string name="next">التالي</string>
+    <string name="pharmacy_name">اسم الصيدلية</string>
+    <string name="address">الموقع الرئيسي</string>
+    <string name="additional_address">الموقع الإضافي</string>
+    <string name="back">السابق</string>
+    <string name="normal">عادي</string>
+    <string name="offer">عرض</string>
+    <string name="repositories">مستودعات</string>
+    <string name="companies">شركات</string>
+    <string name="types">أنواع</string>
+    <string name="kinds">أصناف</string>
 </resources>

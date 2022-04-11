@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.drugstry3.LanguageChange.LocaleHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +37,8 @@ public class LoginAcitivity extends AppCompatActivity {
     Button loginButton;
     RequestQueue queue;
     String url;
+    Context context;
+    Resources resources;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +47,15 @@ public class LoginAcitivity extends AppCompatActivity {
         ///
         sharedPreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
+        context = LocaleHelper.setLocale(LoginAcitivity.this, "ar");
+        resources = context.getResources();
 
         editTextPhone = findViewById(R.id.phone);
         editTextPassword = findViewById(R.id.password);
         loginButton = findViewById(R.id.login);
+        editTextPhone.setText(resources.getString(R.string.phone_number));
+        editTextPassword.setText(resources.getString(R.string.password));
+        loginButton.setText(resources.getString(R.string.login));
         queue = Volley.newRequestQueue(LoginAcitivity.this);
 
 
