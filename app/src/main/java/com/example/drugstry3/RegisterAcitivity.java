@@ -73,8 +73,7 @@ public class RegisterAcitivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_acitivity);
 
-        context = LocaleHelper.setLocale(RegisterAcitivity.this, "ar");
-        resources = context.getResources();
+        changeLanguage("ar");
 
         queue = Volley.newRequestQueue(this);
         viewSwitcher = findViewById(R.id.viewSwitcher);
@@ -264,5 +263,9 @@ public class RegisterAcitivity extends AppCompatActivity {
                     }
                 });
         queue.add(jsonArrayRequest);
+    }
+    public void changeLanguage(String language){
+        context = LocaleHelper.setLocale(RegisterAcitivity.this, language);
+        resources = context.getResources();
     }
 }

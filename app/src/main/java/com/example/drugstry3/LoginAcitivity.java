@@ -47,8 +47,7 @@ public class LoginAcitivity extends AppCompatActivity {
         ///
         sharedPreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        context = LocaleHelper.setLocale(LoginAcitivity.this, "ar");
-        resources = context.getResources();
+        changeLanguage("ar");
 
         editTextPhone = findViewById(R.id.phone);
         editTextPassword = findViewById(R.id.password);
@@ -112,5 +111,9 @@ public class LoginAcitivity extends AppCompatActivity {
             }
         });
 
+    }
+    public void changeLanguage(String language){
+        context = LocaleHelper.setLocale(LoginAcitivity.this, language);
+        resources = context.getResources();
     }
 }

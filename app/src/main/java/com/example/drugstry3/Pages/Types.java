@@ -14,11 +14,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.drugstry3.Adapter.TypeAdapter;
+import com.example.drugstry3.BottomNavigationPages.Shopping;
 import com.example.drugstry3.ClickListener.ClickListener;
 import com.example.drugstry3.LanguageChange.LocaleHelper;
-import com.example.drugstry3.MainActivity;
 import com.example.drugstry3.R;
-import com.example.drugstry3.doingStuff;
 
 import java.util.ArrayList;
 
@@ -42,18 +41,17 @@ public class Types extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //init
-        context = LocaleHelper.setLocale(getContext(), "ar");
-        resources = context.getResources();
+        changeLanguage("en");
         ClickListener listener = new ClickListener() {
             @Override
             public void click(int index) {
                 Toast.makeText(getContext()
                         , "type " + types.get(index) + " chosen",
                         Toast.LENGTH_SHORT ).show();
-                doingStuff.typeSelected = index;
-                doingStuff.tabLayoutMediator.detach();
-                doingStuff.tabLayoutMediator.attach();
-                doingStuff.viewPager2.setCurrentItem(doingStuff.viewPager2.getCurrentItem() +1);
+                Shopping.typeSelected = index;
+                Shopping.tabLayoutMediator.detach();
+                Shopping.tabLayoutMediator.attach();
+                Shopping.viewPager2.setCurrentItem(Shopping.viewPager2.getCurrentItem() +1);
             }
         };
         typeAdapter = new TypeAdapter(listener);
@@ -70,5 +68,9 @@ public class Types extends Fragment {
         typesRecyclerView.setAdapter(typeAdapter);
         return view;
 
+    }
+    public void changeLanguage(String language){
+        context = LocaleHelper.setLocale(getContext(), language);
+        resources = context.getResources();
     }
 }

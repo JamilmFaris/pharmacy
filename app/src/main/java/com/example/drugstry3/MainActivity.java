@@ -4,20 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.drugstry3.LanguageChange.LocaleHelper;
-
-import java.util.Locale;
-
 public class MainActivity extends AppCompatActivity {
 
     Button loginButton;
@@ -32,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
         loginButton = findViewById(R.id.go_login);
         registerButton = findViewById(R.id.go_register);
+        changeLanguage("en");
         //remove
-        context = LocaleHelper.setLocale(MainActivity.this, "ar");
-        resources = context.getResources();
+
         loginButton.setText(resources.getString(R.string.login));
         registerButton.setText(resources.getString(R.string.register));
 
@@ -58,5 +50,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(goRegister);
             }
         });
+    }
+    public void changeLanguage(String language){
+        context = LocaleHelper.setLocale(MainActivity.this, language);
+        resources = context.getResources();
     }
 }

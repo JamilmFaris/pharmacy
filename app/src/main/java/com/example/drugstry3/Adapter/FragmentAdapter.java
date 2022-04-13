@@ -1,19 +1,16 @@
 package com.example.drugstry3.Adapter;
 
-import static com.example.drugstry3.doingStuff.NUM_PAGES;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.adapter.FragmentViewHolder;
 
 import com.example.drugstry3.Pages.Companies;
 import com.example.drugstry3.Pages.Products;
 import com.example.drugstry3.Pages.Repositories;
+import com.example.drugstry3.BottomNavigationPages.Shopping;
 import com.example.drugstry3.Pages.Types;
-
-import java.util.List;
 
 public class FragmentAdapter extends FragmentStateAdapter {
 
@@ -42,6 +39,6 @@ public class FragmentAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return NUM_PAGES;
+        return Shopping.NUM_PAGES;
     }
 }

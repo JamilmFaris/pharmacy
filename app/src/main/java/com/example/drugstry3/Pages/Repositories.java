@@ -1,5 +1,6 @@
 package com.example.drugstry3.Pages;
-import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,10 +21,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.drugstry3.Adapter.RepositoryAdapter;
+import com.example.drugstry3.BottomNavigationPages.Shopping;
 import com.example.drugstry3.ClickListener.ClickListener;
+import com.example.drugstry3.LanguageChange.LocaleHelper;
 import com.example.drugstry3.Model.Repository;
 import com.example.drugstry3.R;
-import com.example.drugstry3.doingStuff;
 import com.google.android.material.navigation.NavigationView;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +39,8 @@ public class Repositories extends Fragment
     ClickListener listener;
     RequestQueue queue;
     public ArrayList<Repository> repositories = new ArrayList<>();
+    Context context;
+    Resources resources;
     public Repositories() {
         // Required empty public constructor
     }
@@ -50,6 +54,7 @@ public class Repositories extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //init
+        changeLanguage("en");
         queue = Volley.newRequestQueue(this.getContext());
         listener = new ClickListener() {
             @Override
@@ -57,11 +62,11 @@ public class Repositories extends Fragment
                 Toast.makeText(getContext()
                         , "repository " + repositories.get(index).SName + " chosen",
                        Toast.LENGTH_SHORT ).show();
-                doingStuff.repositorySelected = index;
-                doingStuff.tabLayoutMediator.detach();
-                doingStuff.tabLayoutMediator.attach();
-                doingStuff.repositorySelectedTimes++;
-                doingStuff.viewPager2.setCurrentItem(doingStuff.viewPager2.getCurrentItem() +1);
+                Shopping.repositorySelected = index;
+                Shopping.tabLayoutMediator.detach();
+                Shopping.tabLayoutMediator.attach();
+                Shopping.repositorySelectedTimes++;
+                Shopping.viewPager2.setCurrentItem(Shopping.viewPager2.getCurrentItem() +1);
 
             }
         };
@@ -126,6 +131,10 @@ public class Repositories extends Fragment
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
+    }
+    public void changeLanguage(String language){
+        context = LocaleHelper.setLocale(getContext(), language);
+        resources = context.getResources();
     }
 
 }

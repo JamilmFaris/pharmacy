@@ -20,4 +20,9 @@
     <string name="companies">شركات</string>
     <string name="types">أنواع</string>
     <string name="kinds">أصناف</string>
+    <string name="search_for_repository">البحث عن مستودع</string>
+    <string name="my_profile">my profile</string>
+    <string name="invoices">invoices</string>
+    <string name="shopping">shopping</string>
+    <string name="settings">settings</string>
 </resources>

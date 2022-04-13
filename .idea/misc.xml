@@ -17,11 +17,16 @@
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment4.xml" value="0.20416666666666666" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_companies.xml" value="0.1" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_holder.xml" value="0.19429347826086957" />
+        <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_invoices.xml" value="0.19010416666666666" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_item_list.xml" value="0.1" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_kinds.xml" value="0.1" />
+        <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_my_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_my_profile2.xml" value="0.20416666666666666" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_products.xml" value="0.19157608695652173" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_repositories.xml" value="0.1" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_screen_slide_page.xml" value="0.1" />
+        <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_settings.xml" value="0.19010416666666666" />
+        <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_shopping.xml" value="0.1" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_types.xml" value="0.1" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/kinds_activity.xml" value="0.1" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/product_holder.xml" value="0.19157608695652173" />
@@ -30,6 +35,8 @@
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/repostitory_holder.xml" value="0.33" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/type_holder.xml" value="0.1" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/types_activity.xml" value="0.1" />
+        <entry key="..\:/DrugsTry3/app/src/main/res/menu/bottom_menu.xml" value="0.1" />
+        <entry key="..\:/DrugsTry3/app/src/main/res/menu/buttom_menu.xml" value="0.22" />
       </map>
     </option>
   </component>

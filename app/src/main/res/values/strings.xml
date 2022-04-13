@@ -19,4 +19,9 @@
     <string name="companies">Companies</string>
     <string name="types">Types</string>
     <string name="kinds">Kinds</string>
+    <string name="search_for_repository">search for repository</string>
+    <string name="my_profile">my profile</string>
+    <string name="invoices">invoices</string>
+    <string name="shopping">shopping</string>
+    <string name="settings">settings</string>
 </resources>

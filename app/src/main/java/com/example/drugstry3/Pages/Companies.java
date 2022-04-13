@@ -1,6 +1,7 @@
 package com.example.drugstry3.Pages;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,11 +22,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.drugstry3.Adapter.CompanyAdapter;
+import com.example.drugstry3.BottomNavigationPages.Shopping;
 import com.example.drugstry3.ClickListener.ClickListener;
+import com.example.drugstry3.LanguageChange.LocaleHelper;
 import com.example.drugstry3.Model.Company;
 import com.example.drugstry3.Model.Repository;
 import com.example.drugstry3.R;
-import com.example.drugstry3.doingStuff;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +40,8 @@ public class Companies extends Fragment {
 
     RecyclerView companiesRecyclerView;
     public static CompanyAdapter companyAdapter;
+    Context context;
+    Resources resources;
     public Companies() {
         // Required empty public constructor
     }
@@ -58,17 +62,18 @@ public class Companies extends Fragment {
         View view = inflater.inflate(R.layout.fragment_companies, container, false);
 
         //init
+        changeLanguage("en");
         ClickListener listener = new ClickListener() {
             @Override
             public void click(int index) {
                 Toast.makeText(getContext()
                         , "company " + companies.get(index).CoName + " chosen",
                         Toast.LENGTH_SHORT ).show();
-                doingStuff.companySelected = index;
-                doingStuff.tabLayoutMediator.detach();
-                doingStuff.tabLayoutMediator.attach();
-                doingStuff.companySelectedTimes++;
-                doingStuff.viewPager2.setCurrentItem(doingStuff.viewPager2.getCurrentItem() +1);
+                Shopping.companySelected = index;
+                Shopping.tabLayoutMediator.detach();
+                Shopping.tabLayoutMediator.attach();
+                Shopping.companySelectedTimes++;
+                Shopping.viewPager2.setCurrentItem(Shopping.viewPager2.getCurrentItem() +1);
 
             }
         };
@@ -84,7 +89,7 @@ public class Companies extends Fragment {
         //get data
         RequestQueue queue =  Volley.newRequestQueue(Companies.this.getContext());
         String url = "http://durgs.robotic-mind.com/WebService.asmx/Companies?level=SelectbyStore&CoId=&sid=";
-        int repositorySelected = doingStuff.repositorySelected + 1;
+        int repositorySelected = Shopping.repositorySelected + 1;
         url += repositorySelected;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
@@ -125,5 +130,9 @@ public class Companies extends Fragment {
         queue.add(jsonArrayRequest);
         return view;
 
+    }
+    public void changeLanguage(String language){
+        context = LocaleHelper.setLocale(getContext(), language);
+        resources = context.getResources();
     }
 }

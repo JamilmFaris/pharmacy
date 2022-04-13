@@ -1,5 +1,7 @@
 package com.example.drugstry3.Pages;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,10 +21,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.drugstry3.Adapter.ProductAdapter;
+import com.example.drugstry3.BottomNavigationPages.Shopping;
 import com.example.drugstry3.ClickListener.ClickListener;
+import com.example.drugstry3.LanguageChange.LocaleHelper;
 import com.example.drugstry3.Model.Product;
 import com.example.drugstry3.R;
-import com.example.drugstry3.doingStuff;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +37,8 @@ public class Products extends Fragment {
     ArrayList<Product> products = new ArrayList<>();
     RecyclerView productsRecyclerView ;
     ProductAdapter productAdapter;
+    Context context;
+    Resources resources;
     public Products() {
         // Required empty public constructor
     }
@@ -52,7 +57,7 @@ public class Products extends Fragment {
                 Toast.makeText(getContext()
                         , "product " + products.get(index).prodName + " chosen",
                         Toast.LENGTH_SHORT ).show();
-                doingStuff.productSelected = index;
+                Shopping.productSelected = index;
             }
         };
         productAdapter = new ProductAdapter(listener);
@@ -62,7 +67,7 @@ public class Products extends Fragment {
         productsRecyclerView = view.findViewById(R.id.product_list);
 
         String url = "http://durgs.robotic-mind.com/WebService.asmx/Products?level=SelectbyComp&prodid=&coid=";
-        int companyId = doingStuff.companySelected +1;
+        int companyId = Shopping.companySelected +1;
         url += companyId;
         url += "&type=&str=All";
         RequestQueue queue = Volley.newRequestQueue(getContext());
@@ -122,5 +127,9 @@ public class Products extends Fragment {
         productsRecyclerView.setAdapter(productAdapter);
         return view;
 
+    }
+    public void changeLanguage(String language){
+        context = LocaleHelper.setLocale(getContext(), language);
+        resources = context.getResources();
     }
 }
