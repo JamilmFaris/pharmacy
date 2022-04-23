@@ -7,9 +7,13 @@
     tools:context=".BottomNavigationPages.Shopping">
 
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar_layout"
             android:layout_width="match_parent"
@@ -17,14 +21,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-
             >
+
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/appbar_layout"
+
+                android:singleLine="true"
+
+                android:hint="@string/search_for_repository"
+
+                />
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+
+                app:layout_constraintTop_toBottomOf="@id/search_bar"
                 />
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"

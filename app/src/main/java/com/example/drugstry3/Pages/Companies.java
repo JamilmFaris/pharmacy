@@ -1,5 +1,7 @@
 package com.example.drugstry3.Pages;
 
+import static com.example.drugstry3.Pages.Repositories.searchbar;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -10,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +27,9 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.drugstry3.Adapter.CompanyAdapter;
 import com.example.drugstry3.BottomNavigationPages.Shopping;
-import com.example.drugstry3.ClickListener.ClickListener;
+import com.example.drugstry3.ClickListener.CompanyClickListener;
 import com.example.drugstry3.LanguageChange.LocaleHelper;
+import com.example.drugstry3.MainActivity;
 import com.example.drugstry3.Model.Company;
 import com.example.drugstry3.Model.Repository;
 import com.example.drugstry3.R;
@@ -33,6 +38,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Companies extends Fragment {
@@ -60,19 +66,19 @@ public class Companies extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_companies, container, false);
-
         //init
-        changeLanguage("en");
-        ClickListener listener = new ClickListener() {
+        changeLanguage(MainActivity.language);
+        CompanyClickListener listener = new CompanyClickListener() {
             @Override
             public void click(int index) {
-                Toast.makeText(getContext()
+                /*Toast.makeText(getContext()
                         , "company " + companies.get(index).CoName + " chosen",
-                        Toast.LENGTH_SHORT ).show();
+                        Toast.LENGTH_SHORT ).show();*/
                 Shopping.companySelected = index;
+                Shopping.companySelectedTimes++;
                 Shopping.tabLayoutMediator.detach();
                 Shopping.tabLayoutMediator.attach();
-                Shopping.companySelectedTimes++;
+                searchbar.setHint(resources.getString(R.string.search_for_product));
                 Shopping.viewPager2.setCurrentItem(Shopping.viewPager2.getCurrentItem() +1);
 
             }
@@ -127,12 +133,72 @@ public class Companies extends Fragment {
                                 Toast.LENGTH_LONG).show();
                     }
                 });
-        queue.add(jsonArrayRequest);
+        //queue.add(jsonArrayRequest);
+        //testing
+        companies.add(new Company("jamil"));companies.add(new Company("jamil"));
+        companies.add(new Company("jamil"));companies.add(new Company("jamil"));
+        companyAdapter.addItems(companies);
+        //
         return view;
 
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        try {
+            if(searchbar == null){
+                Toast.makeText(getContext(), "null", Toast.LENGTH_LONG).show();
+            }
+            // filter customization
+            searchbar.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    if(!searchbar.getText().toString().isEmpty()){
+                        String key = searchbar.getText().toString();
+                        ArrayList<Company> filtered = (ArrayList<Company>) filter(key);
+                        companyAdapter.addItems(filtered);
+                    }
+                    else{
+                        companyAdapter.addItems(companies);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                    //
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void changeLanguage(String language){
         context = LocaleHelper.setLocale(getContext(), language);
         resources = context.getResources();
+    }
+    public List<Company> filter(String key){
+        List<Company> res = new ArrayList<>();
+        for(int i = 0;i < companies.size();i++){
+            String curName = companies.get(i).CoName;
+            boolean include = true;
+            for(int j = 0;j < key.length();j++){
+                if(!curName.contains( key.charAt(j) + "" ) ){
+                    include = false;
+                    break;
+                }
+            }
+            if(include){
+                res.add(companies.get(i));
+            }
+        }
+        return res;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.drugstry3.Pages;
 
+import static com.example.drugstry3.Pages.Repositories.searchbar;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -15,7 +17,8 @@ import android.widget.Toast;
 
 import com.example.drugstry3.Adapter.TypeAdapter;
 import com.example.drugstry3.BottomNavigationPages.Shopping;
-import com.example.drugstry3.ClickListener.ClickListener;
+import com.example.drugstry3.ClickListener.RepositoryClickListener;
+import com.example.drugstry3.ClickListener.TypeClickListener;
 import com.example.drugstry3.LanguageChange.LocaleHelper;
 import com.example.drugstry3.R;
 
@@ -42,7 +45,7 @@ public class Types extends Fragment {
                              Bundle savedInstanceState) {
         //init
         changeLanguage("en");
-        ClickListener listener = new ClickListener() {
+        TypeClickListener listener = new TypeClickListener() {
             @Override
             public void click(int index) {
                 Toast.makeText(getContext()
@@ -51,6 +54,7 @@ public class Types extends Fragment {
                 Shopping.typeSelected = index;
                 Shopping.tabLayoutMediator.detach();
                 Shopping.tabLayoutMediator.attach();
+                searchbar.setHint(resources.getString(R.string.search_for_product));
                 Shopping.viewPager2.setCurrentItem(Shopping.viewPager2.getCurrentItem() +1);
             }
         };

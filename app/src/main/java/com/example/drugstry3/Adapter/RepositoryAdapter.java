@@ -7,20 +7,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.drugstry3.ClickListener.ClickListener;
-import com.example.drugstry3.Model.Company;
+import com.example.drugstry3.ClickListener.RepositoryClickListener;
 import com.example.drugstry3.Model.Repository;
 import com.example.drugstry3.R;
 import com.example.drugstry3.ViewHolder.RepositoryViewHolder;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryViewHolder> {
 
     ArrayList<Repository> repositories = new ArrayList<>();
-    public ClickListener clickListener;
-    public RepositoryAdapter(ClickListener clickListener){
+    public RepositoryClickListener clickListener;
+    public RepositoryAdapter(RepositoryClickListener clickListener){
         this.clickListener = clickListener;
     }
 

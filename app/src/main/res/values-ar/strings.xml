@@ -21,8 +21,10 @@
     <string name="types">أنواع</string>
     <string name="kinds">أصناف</string>
     <string name="search_for_repository">البحث عن مستودع</string>
-    <string name="my_profile">my profile</string>
-    <string name="invoices">invoices</string>
-    <string name="shopping">shopping</string>
-    <string name="settings">settings</string>
+    <string name="my_profile">بروفايلي</string>
+    <string name="invoices">الفواتير</string>
+    <string name="shopping">التسوق</string>
+    <string name="settings">الإعدادات</string>
+    <string name="search_for_companies">البحث عن شركة</string>
+    <string name="search_for_product">البحث عن منتج</string>
 </resources>

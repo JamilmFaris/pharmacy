@@ -22,7 +22,8 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.drugstry3.Adapter.ProductAdapter;
 import com.example.drugstry3.BottomNavigationPages.Shopping;
-import com.example.drugstry3.ClickListener.ClickListener;
+import com.example.drugstry3.ClickListener.ProductClickListener;
+import com.example.drugstry3.ClickListener.RepositoryClickListener;
 import com.example.drugstry3.LanguageChange.LocaleHelper;
 import com.example.drugstry3.Model.Product;
 import com.example.drugstry3.R;
@@ -51,12 +52,12 @@ public class Products extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //init
-        ClickListener listener = new ClickListener() {
+        ProductClickListener listener = new ProductClickListener() {
             @Override
             public void click(int index) {
-                Toast.makeText(getContext()
+                /*Toast.makeText(getContext()
                         , "product " + products.get(index).prodName + " chosen",
-                        Toast.LENGTH_SHORT ).show();
+                        Toast.LENGTH_SHORT ).show();*/
                 Shopping.productSelected = index;
             }
         };
@@ -119,7 +120,12 @@ public class Products extends Fragment {
                                 Toast.LENGTH_LONG).show();
                     }
                 });
-        queue.add(jsonArrayRequest);
+        //queue.add(jsonArrayRequest);
+        //testing
+        products.add(new Product("jamil"));products.add(new Product("jamil"));
+        products.add(new Product("jamil"));products.add(new Product("jamil"));
+        productAdapter.addItems(products);
+        //
 
         productsRecyclerView.setLayoutManager(new GridLayoutManager(Products.this.getContext(),
                 2, LinearLayoutManager.VERTICAL,false ));

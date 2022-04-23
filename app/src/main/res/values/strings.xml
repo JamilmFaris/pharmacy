@@ -24,4 +24,6 @@
     <string name="invoices">invoices</string>
     <string name="shopping">shopping</string>
     <string name="settings">settings</string>
+    <string name="search_for_companies">search for companies</string>
+    <string name="search_for_product">search for product</string>
 </resources>

@@ -16,15 +16,17 @@ public class MainActivity extends AppCompatActivity {
     Button registerButton;
     Context context;
     Resources resources;
+    public static String language = "en";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        /// TODO : erase remove and put a real functionality
 
         loginButton = findViewById(R.id.go_login);
         registerButton = findViewById(R.id.go_register);
-        changeLanguage("en");
+        changeLanguage(language);
         //remove
 
         loginButton.setText(resources.getString(R.string.login));
