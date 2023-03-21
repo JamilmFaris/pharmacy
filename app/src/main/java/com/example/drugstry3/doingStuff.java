@@ -1,28 +1,28 @@
 package com.example.drugstry3;
 
-import androidx.annotation.NonNull;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-
-import android.content.Context;
-import android.content.res.Resources;
-import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.example.drugstry3.BottomNavigationPages.Invoices;
 import com.example.drugstry3.BottomNavigationPages.MyProfile;
 import com.example.drugstry3.BottomNavigationPages.Settings;
-import com.example.drugstry3.LanguageChange.LocaleHelper;
 import com.example.drugstry3.BottomNavigationPages.Shopping;
+import com.example.drugstry3.LanguageChange.LocaleHelper;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class doingStuff extends FragmentActivity
-
-{
+public class doingStuff extends FragmentActivity{
 
     Context context;
     public static Resources resources;
     NavigationBarView bottomNavigationView;
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,29 +31,30 @@ public class doingStuff extends FragmentActivity
         ///init
         changeLanguage("en");
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment selectedFragment = null;
-                switch (item.getItemId()){
-                    case R.id.myprofile:
-                        selectedFragment = new MyProfile();
-                        break;
-                    case R.id.invoices:
-                        selectedFragment = new Invoices();
-                        break;
-                    case R.id.shopping:
-                        selectedFragment = new Shopping();
-                        break;
-                    case R.id.settings:
-                        selectedFragment = new Settings();
-                        break;
-                }
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-                return true;
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
+            switch (item.getItemId()){
+                case R.id.myprofile:
+                    selectedFragment = new MyProfile();
+                    break;
+                case R.id.invoices:
+                    selectedFragment = new Invoices();
+                    break;
+                case R.id.shopping:
+                    selectedFragment = new Shopping();
+                    break;
+                case R.id.settings:
+                    selectedFragment = new Settings();
+                    break;
+                default:selectedFragment = new MyProfile();
             }
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, selectedFragment).commit();
+            return true;
         });
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyProfile()).commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new MyProfile()).commit();
 
     }
 

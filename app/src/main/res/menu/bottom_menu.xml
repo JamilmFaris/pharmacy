@@ -3,17 +3,23 @@
     <item
         android:id="@+id/myprofile"
         android:title="@string/my_profile"
+        android:icon="@drawable/bottom_nav_icon_profile"
+
         />
     <item
         android:id="@+id/invoices"
         android:title="@string/invoices"
+        android:icon="@drawable/bottom_nav_icon_invoices"
         />
     <item
         android:id="@+id/shopping"
         android:title="@string/shopping"
+        android:icon="@drawable/bottom_nav_icon_shopping"
         />
     <item
         android:id="@+id/settings"
         android:title="@string/settings"
+        android:visible="true"
+        android:icon="@drawable/bottom_nav_icon_settings"
         />
 </menu>

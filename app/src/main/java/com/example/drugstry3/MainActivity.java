@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
         registerButton.setText(resources.getString(R.string.register));
 
         Intent intent = new Intent(this, doingStuff.class);
-
-
         startActivity(intent);
         //remove
 

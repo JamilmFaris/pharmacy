@@ -3,6 +3,7 @@ package com.example.drugstry3;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -27,7 +28,10 @@ import org.json.JSONObject;
 public class LoginAcitivity extends AppCompatActivity {
 
     public static final String myPreferences = "myPreferences";
-    public static final String PID = "PID";
+    public static final String PIDSharedPreferences = "PID";
+    public static final String PHONESharedPreferences = "phone";
+    public static final String PASSWORDSharedPreferences = "password";
+    public static String PID = "";
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor ;
@@ -39,27 +43,37 @@ public class LoginAcitivity extends AppCompatActivity {
     String url;
     Context context;
     Resources resources;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_acitivity);
 
         ///
-        sharedPreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
+
+
         changeLanguage("ar");
+        Intent intent = new Intent(LoginAcitivity.this, doingStuff.class);
 
         editTextPhone = findViewById(R.id.phone);
         editTextPassword = findViewById(R.id.password);
         loginButton = findViewById(R.id.login);
-        editTextPhone.setText(resources.getString(R.string.phone_number));
-        editTextPassword.setText(resources.getString(R.string.password));
-        loginButton.setText(resources.getString(R.string.login));
+        editTextPhone.setHint(resources.getString(R.string.phone_number));
+        editTextPassword.setHint(resources.getString(R.string.password));
+        loginButton.setHint(resources.getString(R.string.login));
         queue = Volley.newRequestQueue(LoginAcitivity.this);
 
+        //try to get previous login
+        sharedPreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        PID = sharedPreferences.getString(PIDSharedPreferences, "");
+
+        if(!PID.isEmpty()){
+            startActivity(intent);
+        }
 
 
-        ///
+        /// no previous login
          url = "http://durgs.robotic-mind.com/WebService.asmx/loginPharma?phone=";
 
 
@@ -85,16 +99,20 @@ public class LoginAcitivity extends AppCompatActivity {
 
                                 if(jsonObject.get("message").equals("Success")){
                                     JSONObject jsonObject1 = response.getJSONObject(1);
-                                    res ="PID = " + jsonObject1.get("PID");
-                                    sharedPreferences.getString("PID", jsonObject1.get("PID").toString());
+                                    PID = jsonObject1.get("PID").toString();
+                                    res ="PID = " + PID;
+                                    editor.putString(PIDSharedPreferences, PID);
+                                    editor.commit();
+                                    startActivity(intent);
                                 }
                                 else{
                                     res ="phone and password are not compatible";
                                 }
                                 Toast.makeText(LoginAcitivity.this, res, Toast.LENGTH_SHORT).show();
 
+
                             } catch (JSONException e) {
-                                e.printStackTrace();Toast.makeText(LoginAcitivity.this, "catched", Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();Toast.makeText(LoginAcitivity.this, "catch", Toast.LENGTH_SHORT).show();
                             }
 
                         }

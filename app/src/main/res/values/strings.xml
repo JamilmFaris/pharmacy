@@ -1,6 +1,6 @@
 <resources>
     <string name="pharma">Pharma </string>
-    <string name="app_name">Drugs</string>
+    <string name="app_name">Pharmacy</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="enter_your_phone_number">Enter your phone number</string>
@@ -26,4 +26,8 @@
     <string name="settings">settings</string>
     <string name="search_for_companies">search for companies</string>
     <string name="search_for_product">search for product</string>
+    <string name="personal">personal</string>
+    <string name="pharmacy">pharmacy</string>
+    <string name="hello">Hello</string>
+    <string name="tabs" translatable="false">tabs</string>
 </resources>

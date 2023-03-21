@@ -11,6 +11,7 @@
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/activity_register_acitivity.xml" value="0.2" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/companies_activity.xml" value="0.1" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/company_holder.xml" value="0.1" />
+        <entry key="..\:/DrugsTry3/app/src/main/res/layout/dialog.xml" value="0.1" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment1.xml" value="0.20416666666666666" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment2.xml" value="0.20416666666666666" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment3.xml" value="0.20416666666666666" />
@@ -29,6 +30,10 @@
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_shopping.xml" value="0.22" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/fragment_types.xml" value="0.1" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/kinds_activity.xml" value="0.1" />
+        <entry key="..\:/DrugsTry3/app/src/main/res/layout/myprofile_password_holder.xml" value="0.20416666666666666" />
+        <entry key="..\:/DrugsTry3/app/src/main/res/layout/myprofile_personal_text_viewholder.xml" value="0.20416666666666666" />
+        <entry key="..\:/DrugsTry3/app/src/main/res/layout/personal_information_viewholder.xml" value="0.2384428223844282" />
+        <entry key="..\:/DrugsTry3/app/src/main/res/layout/personal_text_viewholder.xml" value="0.20416666666666666" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/product_holder.xml" value="0.19157608695652173" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/repositories_activity.xml" value="0.19429347826086957" />
         <entry key="..\:/DrugsTry3/app/src/main/res/layout/repository_holder.xml" value="0.19429347826086957" />

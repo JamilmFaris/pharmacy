@@ -147,7 +147,7 @@ public class Repositories extends Fragment
         super.onViewCreated(view, savedInstanceState);
         try {
             if(searchbar == null){
-                Toast.makeText(getContext(), "null", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(), "null", Toast.LENGTH_LONG).show();
             }
             // filter customization
             searchbar.addTextChangedListener(new TextWatcher() {

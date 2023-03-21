@@ -1,5 +1,7 @@
 package com.example.drugstry3.BottomNavigationPages;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,9 +13,12 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.drugstry3.Adapter.FragmentAdapter;
+import com.example.drugstry3.LanguageChange.LocaleHelper;
+import com.example.drugstry3.LoginAcitivity;
 import com.example.drugstry3.Pages.Repositories;
 import com.example.drugstry3.R;
 import com.example.drugstry3.doingStuff;
@@ -21,6 +26,9 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class Shopping extends Fragment {
+    Context context;
+    Resources resources;
+    TextView hello ;
 
     public static ViewPager2 viewPager2;
     public static int NUM_PAGES = 4;
@@ -58,6 +66,14 @@ public class Shopping extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Repositories.searchbar = view.findViewById(R.id.search_bar);
+
+        changeLanguage("en");
+
+        hello = view.findViewById(R.id.hello);
+        String helloString = resources.getString(R.string.hello);
+        helloString = helloString + " user";
+        hello.setText(helloString);
+
         viewPager2 = view.findViewById(R.id.view_pager);
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getActivity());
         viewPager2.setAdapter(fragmentAdapter);
@@ -78,38 +94,38 @@ public class Shopping extends Fragment {
                     companySelected = -1;
                     typeSelected = -1;
                     productSelected = -1;
-                    Toast.makeText(getContext(),
-                            "rep sel " + repositorySelected
-                                    + "\ncom sel " + companySelected
-                                    + "\nIm on pos 0"
-                            , Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(),
+//                            "rep sel " + repositorySelected
+//                                    + "\ncom sel " + companySelected
+//                                    + "\nIm on pos 0"
+//                            , Toast.LENGTH_SHORT).show();
                 }
                 else if(position == 1){
                     companySelected = -1;
                     typeSelected = -1;
                     productSelected = -1;
-                    Toast.makeText(getContext(),
-                            "rep sel " + repositorySelected
-                                    + "\ncom sel " + companySelected
-                                    + "\nIm on pos 1"
-                            , Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(),
+//                            "rep sel " + repositorySelected
+//                                    + "\ncom sel " + companySelected
+//                                    + "\nIm on pos 1"
+//                            , Toast.LENGTH_SHORT).show();
                 }
                 else if(position == 2){
 
                     typeSelected = -1;
                     productSelected = -1;
-                    Toast.makeText(getContext(),
-                            "rep sel " + repositorySelected
-                                    + "\ncom sel " + companySelected
-                            , Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(),
+//                            "rep sel " + repositorySelected
+//                                    + "\ncom sel " + companySelected
+//                            , Toast.LENGTH_SHORT).show();
                 }
                 else{
                     productSelected = -1;
-                    Toast.makeText(getContext(),
-                            "rep sel " + repositorySelected
-                                    + "\ncom sel " + companySelected
-                                    + "\nIm on pos 3"
-                            , Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(),
+//                            "rep sel " + repositorySelected
+//                                    + "\ncom sel " + companySelected
+//                                    + "\nIm on pos 3"
+//                            , Toast.LENGTH_SHORT).show();
                 }
                 refreshTab();
                 super.onPageSelected(position);
@@ -172,5 +188,9 @@ public class Shopping extends Fragment {
                 tabLayout.getTabAt(i).view.setClickable(true);
             }
         }
+    }
+    public void changeLanguage(String language){
+        context = LocaleHelper.setLocale(getContext(), language);
+        resources = context.getResources();
     }
 }

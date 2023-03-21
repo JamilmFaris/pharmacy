@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Drugs</string>
+    <string name="app_name">pharma</string>
     <string name="pharma">Pharma</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
@@ -27,4 +27,7 @@
     <string name="settings">settings</string>
     <string name="search_for_companies">search for companies</string>
     <string name="search_for_product">search for product</string>
+    <string name="personal">personal</string>
+    <string name="pharmacy">pharmacy</string>
+    <string name="hello">Hello</string>
 </resources>

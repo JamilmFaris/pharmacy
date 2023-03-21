@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">أدوية</string>
+    <string name="app_name">فارما</string>
     <string name="pharma">فارما</string>
     <string name="login">تسجيل الدخول</string>
     <string name="register">التسجيل</string>
@@ -27,4 +27,7 @@
     <string name="settings">الإعدادات</string>
     <string name="search_for_companies">البحث عن شركة</string>
     <string name="search_for_product">البحث عن منتج</string>
+    <string name="personal">شخصي</string>
+    <string name="pharmacy">صيدلية</string>
+    <string name="hello">مرحبا بك</string>
 </resources>
